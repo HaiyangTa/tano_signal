@@ -48,8 +48,9 @@ class dict_maker_gt:
             row_index = index//self.num_column
             column_index = index%self.num_column
             self.dictt[i] = (self.cube[:,row_index, column_index],
-                             [self.Fcnm[row_index, column_index], self.Rhi[row_index, column_index]],
-                             [row_index, column_index])
+                             [row_index, column_index],
+                             [self.Fcnm[row_index, column_index], self.Rhi[row_index, column_index]]
+                             )
         return self.dictt
     
     
