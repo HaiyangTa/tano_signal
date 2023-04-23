@@ -22,7 +22,7 @@ import numpy as np
         spectra after processing.
 """
 
-def proprocess(spectra, PEV):
+def preprocess(spectra, PEV):
     
     if (PEV=='index_concate'):
         position = np.linspace(0, 1.0, self.num_column).reshape(1, -1)
