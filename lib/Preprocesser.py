@@ -23,25 +23,28 @@ import numpy as np
 """
 
 def preprocess(spectra, PEV):
+    #print('shape=', spectra.shape)
+    num_column = len(spectra)
+    
     
     if (PEV=='index_concate'):
-        position = np.linspace(0, 1.0, self.num_column).reshape(1, -1)
+        position = np.linspace(0, 1.0, num_column).reshape(1, -1)
         spectra = np.vstack((spectra, position))
         spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
     elif (PEV=='index_add'):
-        position = np.linspace(0, 1.0, self.num_column).reshape(1, -1)
+        position = np.linspace(0, 1.0, num_column).reshape(1, -1)
         spectra = spectra + position
         spectra = spectra.reshape(1,1,spectra.shape[1])
     elif (PEV=='sin_add'):
-        position = np.sin(np.linspace(0, 1.0, self.num_column).reshape(1, -1))
+        position = np.sin(np.linspace(0, 1.0, num_column).reshape(1, -1))
         spectra = spectra + position
         spectra = spectra.reshape(1,1,spectra.shape[1])
     elif (PEV=='sin_concate'):
-        position = np.sin(np.linspace(0, 1.0, self.num_column).reshape(1, -1))
+        position = np.sin(np.linspace(0, 1.0, num_column).reshape(1, -1))
         spectra =  np.vstack((spectra,position))
         spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
     elif (PEV=='poly_concate'):
-        zero = np.linspace(0, 1.0, self.num_column).reshape(1, -1) 
+        zero = np.linspace(0, 1.0, num_column).reshape(1, -1) 
         two =  spectra**2
         spectra = np.vstack((spectra,two))
         spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])

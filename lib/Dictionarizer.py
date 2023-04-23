@@ -29,7 +29,7 @@ import math
 """
 
 
-class dict_maker_gt:
+class dict_maker:
 
     def __init__(self, cube ,Rhi, Fcnm):
         
@@ -42,7 +42,10 @@ class dict_maker_gt:
         self.num_channel = self.cube.shape[0]
         self.num = self.num_row* self.num_column
         
-    def make_dict(self):
+    def make_dict_gt(self):
+        if(self.Rhi==None or self.Fcnm ==None):
+            print("No ground truth data! Please use method make_dict.")
+            return None
         for i in range(0, self.num):
             index=i
             row_index = index//self.num_column
@@ -53,35 +56,6 @@ class dict_maker_gt:
                              )
         return self.dictt
     
-    
-"""
-    dict_maker: A class of dict_maker.
-    generate a dictionary for the datacube that dose not conatin ground truth. 
-    Used for 101 velocity channels data (data with 101 length).
-    
-    input Attributes
-    ----------
-    cube: data cube
-        spectra data cube.
-        
-    Methods
-    -------
-    make_dict:
-        generate a dictionary for the datacube that not conatins ground truth. 
-    
-"""
-    
-    
-class dict_maker:
-
-    def __init__(self, cube):
-        self.dictt = {}
-        self.cube = cube
-        self.num_row = self.cube.shape[1]
-        self.num_column = self.cube.shape[2]
-        self.num_channel = self.cube.shape[0]
-        self.num = self.num_row* self.num_column
-        
     def make_dict(self):
         for i in range(0, self.num):
             index=i
@@ -90,3 +64,4 @@ class dict_maker:
             self.dictt[i] = (self.cube[:,row_index, column_index],
                              [row_index, column_index])
         return self.dictt
+    

@@ -79,32 +79,6 @@ class learnable_PEV_ct_weights:
 
     
 """
-    original_vector_ct_weights,: A class of the CNN_transformer weights (learnable_PEV_ct_weights).
-    Used for 101 velocity channels data (data with 101 length).
-    
-    input Attributes
-    ----------
-    device : device
-        GPU or CPU.
-    
-    Methods
-    -------
-    get_checkpoint():
-        return the checkpoint of the weights. 
-    
-"""
-    
-class original_vector_ct_weights:
-    def __init__(self, device):
-        self.path =  os.getcwd() + '\\lib\\original_vector.pth'
-        print(self.path)
-        self.checkpoint = torch.load(self.path, map_location=device)
-        
-    def get_checkpoint_weights(self):
-        return self.checkpoint['net']
-    
-    
-"""
     spectra_cnn: A class of the CNN small model.
     Used for 101 velocity channels data (data with 101 length).
     
@@ -171,9 +145,12 @@ def spectra_cnn(weights, num_output,in_channels,input_row, input_column, drop_ou
         
         
 class poly_concate_c_weights:
+    
     def __init__(self, device):
-        self.path =  '\\lib\\poly_concate.pth'
-        self.checkpoint = os.getcwd() + torch.load(self.path, map_location=device)
+        self.path =  os.getcwd() + '\\lib\\poly_concate.pth'
+        print(self.path)
+        self.checkpoint = torch.load(self.path, map_location=device)
         
     def get_checkpoint_weights(self):
+        
         return self.checkpoint['net']
