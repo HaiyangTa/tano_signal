@@ -35,7 +35,7 @@ from torch.utils.data import Dataset
 
 
 # data loader 
-class spectra_loader(Dataset):
+class loader(Dataset):
     def __init__(self, x, y, transform=None, target_transform=None, pe=None):
         
         self.x = x
@@ -108,7 +108,7 @@ class spectra_loader(Dataset):
 
 
 # data loader 
-class spectra_cube_loader(Dataset):
+class cube_loader(Dataset):
     def __init__(self, xy, transform=None, target_transform=None, pe=None):
         
         self.xy = xy
