@@ -8,7 +8,7 @@ LONG_DESCRIPTION = 'Contains CNN-transformer, CNN model and data representations
 
 # Setting up
 setup(
-    name="SignalHY",
+    name="tano_signal",
     version=VERSION,
     author="Haiyang Tang",
     author_email="<Haiyang.Tang@outlook.com>",
@@ -16,7 +16,7 @@ setup(
     long_description_content_type="text/markdown",
     long_description=long_description,
     packages=find_packages(),
-    install_requires=['opencv-python', 'torch','math', 'numpy'],
+    install_requires=[ 'torch', 'numpy', 'os'],
     keywords=['python', 'spectra','spectrum','CNN-transformer', 'CNN', 'Representation learning' ,'data representation'],
     classifiers=[
         "Development Status :: 1 - Planning",

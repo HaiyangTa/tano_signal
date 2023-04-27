@@ -5,7 +5,6 @@ Do not used for commercial purpose!
 """
 
 import numpy as np
-import math
 
 """
     dict_maker_gt: A class of dict_maker.
