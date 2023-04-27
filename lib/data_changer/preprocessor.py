@@ -27,23 +27,23 @@ def preprocess(spectra, PEV):
     num_column = len(spectra)
     
     
-    if (PEV=='index_concate'):
+    if (PEV=='index_c'):
         position = np.linspace(0, 1.0, num_column).reshape(1, -1)
         spectra = np.vstack((spectra, position))
         spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
-    elif (PEV=='index_add'):
+    elif (PEV=='index_a'):
         position = np.linspace(0, 1.0, num_column).reshape(1, -1)
         spectra = spectra + position
         spectra = spectra.reshape(1,1,spectra.shape[1])
-    elif (PEV=='sin_add'):
+    elif (PEV=='sin_a'):
         position = np.sin(np.linspace(0, 1.0, num_column).reshape(1, -1))
         spectra = spectra + position
         spectra = spectra.reshape(1,1,spectra.shape[1])
-    elif (PEV=='sin_concate'):
+    elif (PEV=='sin_c'):
         position = np.sin(np.linspace(0, 1.0, num_column).reshape(1, -1))
         spectra =  np.vstack((spectra,position))
         spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
-    elif (PEV=='poly_concate'):
+    elif (PEV=='poly_c'):
         zero = np.linspace(0, 1.0, num_column).reshape(1, -1) 
         two =  spectra**2
         spectra = np.vstack((spectra,two))

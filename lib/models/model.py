@@ -35,13 +35,13 @@ def spectra_cnn_transformer(PEV, weights, num_output=2, drop_out_rate=0):
     lpe = False
     
     
-    if(PEV=='trainable_PEV'):
+    if(PEV=='trainable_a'):
         lpe=True
-    if (PEV=='index_concate'):
+    if (PEV=='index_c'):
         input_row = 2
-    elif (PEV=='sin_concate'):
+    elif (PEV=='sin_c'):
         input_row = 2
-    elif (PEV=='poly_concate'):
+    elif (PEV=='poly_c'):
         input_row = 2
     modell = prototype.cnn_transformer(num_output= num_output, 
                                              in_channels=in_channels, 
@@ -113,13 +113,13 @@ def spectra_cnn(PEV, weights, num_output=2, drop_out_rate=0):
     input_row = 1
     lpe = False
     
-    if(PEV=='trainable_PEV'):
+    if(PEV=='trainable_a'):
         lpe=True
-    if (PEV=='index_concate'):
+    if (PEV=='index_c'):
         input_row = 2
-    elif (PEV=='sin_concate'):
+    elif (PEV=='sin_c'):
         input_row = 2
-    elif (PEV=='poly_concate'):
+    elif (PEV=='poly_c'):
         input_row = 2
         
     

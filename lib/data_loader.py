@@ -36,13 +36,13 @@ from torch.utils.data import Dataset
 
 # data loader 
 class loader(Dataset):
-    def __init__(self, x, y, transform=None, target_transform=None, pe=None):
+    def __init__(self, x, y, x_transform=None, y_transform=None, PEV=None):
         
         self.x = x
         self.y = y
-        self.transform = transform
-        self.target_transform = target_transform
-        self.mode=pe
+        self.transform = x_transform
+        self.target_transform = y_transform
+        self.mode = PEV
         self.num_column = x.shape[1]
     def __len__(self):
         return len(self.y[:,0])
@@ -51,23 +51,23 @@ class loader(Dataset):
         spectra = self.x[idx,:]
         label = self.y[idx,:]
             
-        if (self.mode=='index_concate'):
+        if (self.mode=='index_c'):
             position = np.linspace(0, 1.0, self.num_column).reshape(1, -1)
             spectra = np.vstack((spectra, position))
             spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
-        elif (self.mode=='index_add'):
+        elif (self.mode=='index_a'):
             position = np.linspace(0, 1.0, self.num_column).reshape(1, -1)
             spectra = spectra + position
             spectra = spectra.reshape(1,1,spectra.shape[1])
-        elif (self.mode=='sin_add'):
+        elif (self.mode=='sin_a'):
             position = np.sin(np.linspace(0, 1.0, self.num_column).reshape(1, -1))
             spectra = spectra + position
             spectra = spectra.reshape(1,1,spectra.shape[1])
-        elif (self.mode=='sin_concate'):
+        elif (self.mode=='sin_c'):
             position = np.sin(np.linspace(0, 1.0, self.num_column).reshape(1, -1))
             spectra =  np.vstack((spectra,position))
             spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
-        elif (self.mode=='poly_concate'):
+        elif (self.mode=='poly_c'):
             zero = np.linspace(0, 1.0, self.num_column).reshape(1, -1) 
             two =  spectra**2
             spectra = np.vstack((spectra,two))
@@ -109,12 +109,12 @@ class loader(Dataset):
 
 # data loader 
 class cube_loader(Dataset):
-    def __init__(self, xy, transform=None, target_transform=None, pe=None):
+    def __init__(self, data_dict, x_transform=None, y_transform=None, PEV=None):
         
-        self.xy = xy
-        self.transform = transform
-        self.target_transform = target_transform
-        self.mode=pe
+        self.xy = data_dict
+        self.transform = x_transform
+        self.target_transform = y_transform
+        self.mode=PEV
         self.num_column = len(self.xy[0][0])
     def __len__(self):
         return len(self.xy)
@@ -123,23 +123,23 @@ class cube_loader(Dataset):
         spectra = self.xy[idx][0]
         label = self.xy[idx][2]
         
-        if (self.mode=='index_concate'):
+        if (self.mode=='index_c'):
             position = np.linspace(0, 1.0, self.num_column).reshape(1, -1)
             spectra = np.vstack((spectra, position))
             spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
-        elif (self.mode=='index_add'):
+        elif (self.mode=='index_a'):
             position = np.linspace(0, 1.0, self.num_column).reshape(1, -1)
             spectra = spectra + position
             spectra = spectra.reshape(1,1,spectra.shape[1])
-        elif (self.mode=='sin_add'):
+        elif (self.mode=='sin_a'):
             position = np.sin(np.linspace(0, 1.0, self.num_column).reshape(1, -1))
             spectra = spectra + position
             spectra = spectra.reshape(1,1,spectra.shape[1])
-        elif (self.mode=='sin_concate'):
+        elif (self.mode=='sin_c'):
             position = np.sin(np.linspace(0, 1.0, self.num_column).reshape(1, -1))
             spectra =  np.vstack((spectra,position))
             spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
-        elif (self.mode=='poly_concate'):
+        elif (self.mode=='poly_c'):
             two =  spectra**2
             spectra = np.vstack((spectra,two))
             spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
