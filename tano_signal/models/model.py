@@ -1,9 +1,8 @@
 
-from lib.models import prototype
+from tano_signal.models import prototype
 import torch
 import os
-#import model.cnn_transformer as cnn_transformer
-#import model.cnn as cnn 
+import importlib 
 
 """
     spectra_cnn_transformerr: get the model of CNN-transformer.
@@ -77,7 +76,8 @@ def spectra_cnn_transformer(PEV, weights, num_output=2, drop_out_rate=0):
         
 class learnable_PEV_ct_weights:
     def __init__(self, device):
-        self.path =  os.getcwd() + '\\lib\\models\\learnable_PEV.pth'
+        with importlib.resources.path('tano_signal.models', 'learnable_PEV.pth') as path:
+            self.path = path
         print(self.path)
         self.checkpoint = torch.load(self.path, map_location=device)
         
@@ -158,7 +158,8 @@ def spectra_cnn(PEV, weights, num_output=2, drop_out_rate=0):
 class poly_concate_c_weights:
     
     def __init__(self, device):
-        self.path =  os.getcwd() + '\\lib\\models\\poly_concate.pth'
+        with importlib.resources.path('tano_signal.models', 'poly_concate.pth') as path:
+            self.path = path
         print(self.path)
         self.checkpoint = torch.load(self.path, map_location=device)
         
@@ -186,7 +187,8 @@ class poly_concate_c_weights:
 class original_vector_c_weights:
     
     def __init__(self, device):
-        self.path =  os.getcwd() + '\\lib\\model\\original_vector.pth'
+        with importlib.resources.path('tano_signal.models', 'original_vector.pth') as path:
+            self.path = path
         print(self.path)
         self.checkpoint = torch.load(self.path, map_location=device)
         

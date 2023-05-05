@@ -26,4 +26,12 @@ setup(
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: Microsoft :: Windows",
     ]
+    
+    
+    include_package_data=True,
+    package_data = {
+        "tanp_signal.models" : ["*.pth"],
+    }
+    
+    
 )

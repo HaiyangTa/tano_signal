@@ -1,9 +1,8 @@
 import numpy as np
 import torch
 from torch.utils.data import Dataset
-#from lib import preprocesser
-from lib.data_changer import dictionarizer
-from lib.data_changer import preprocessor
+from tano_signal.data_changer import dictionarizer
+from tano_signal.data_changer import preprocessor
 
 
 def getitem(spectra, PEV):
