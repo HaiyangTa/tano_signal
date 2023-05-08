@@ -39,7 +39,7 @@ def calculate(cube, model, PEV):
     num_row = cube.shape[1]
     num_column = cube.shape[2]
     dictt = dictionarizer.dict_maker(cube=cube,Rhi=None, Fcnm=None).make_dict()
-    
+    Summ = num_row*num_column
     device = torch.device('cpu')
     model.to(device)
     
@@ -47,7 +47,7 @@ def calculate(cube, model, PEV):
     Rhi = np.zeros((num_row,num_column,1))
     for i in range(0, len(dictt)):
         if(i%10000==0):
-            print(i)
+            print((i/Summ)*100, '%')
         o = dictt.get(i)
 
         spectra = getitem(spectra = np.array(o[0]), PEV=PEV)

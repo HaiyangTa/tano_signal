@@ -179,11 +179,11 @@ class cnn_transformer(nn.Module):
         x = self.conv1(x)
         x = self.bn1(x)
         x = F.relu(x)
-        #print(2, x.size())
+        
         x = self.conv2(x)
         x = self.bn2(x)
         x = F.relu(x)
-        #print(3, x.size())
+        
         x = self.conv3(x)
         x = self.bn3(x)
         x = F.relu(x)
@@ -210,7 +210,7 @@ class cnn_transformer(nn.Module):
         #
         x = self.flatten(x)
         x = self.linear(x)
-        #print(3, x.size())
+        
         x = x.reshape(x.shape[0], -1, 9)
         # Transformer MODEL
         x = self.transformer(x)

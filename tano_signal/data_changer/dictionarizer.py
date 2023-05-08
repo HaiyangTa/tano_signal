@@ -48,7 +48,7 @@ class dict_maker:
         
     def make_dict_gt(self):
         if(self.Rhi==None or self.Fcnm ==None):
-            print("No ground truth data! Please use method make_dict.")
+            print("No ground truth data! Please use method make_dict.!")
             return None
         for i in range(0, self.num):
             index=i
@@ -58,6 +58,7 @@ class dict_maker:
                              [row_index, column_index],
                              [self.Fcnm[row_index, column_index], self.Rhi[row_index, column_index]]
                              )
+        print('dictionary generate successfully! The structure of the dictionary item is: [key : (spectra , coordinates , [Fcnm, Rhi])]')
         return self.dictt
     
     def make_dict(self):
@@ -67,5 +68,6 @@ class dict_maker:
             column_index = index%self.num_column
             self.dictt[i] = (self.cube[:,row_index, column_index],
                              [row_index, column_index])
+            print('dictionary generate successfully! The structure of the dictionary item is : [key : (spectra , coordinates)]')
         return self.dictt
     

@@ -51,6 +51,7 @@ def spectra_cnn_transformer(PEV, weights, num_output=2, drop_out_rate=0):
     
     if(weights != None): 
         modell.load_state_dict(weights.get_checkpoint_weights())
+        print('sucessfully load the weights!')
     modell.eval()
     
     return modell
@@ -136,6 +137,7 @@ def spectra_cnn(PEV, weights, num_output=2, drop_out_rate=0):
         
     if(weights != None):
         modell.load_state_dict(weights.get_checkpoint_weights())
+        print('sucessfully load the weights!')
     modell.eval()
     
     return modell
@@ -158,8 +160,8 @@ def spectra_cnn(PEV, weights, num_output=2, drop_out_rate=0):
         return the checkpoint of the weights. 
     
 """
-        
-        
+
+
 class poly_concate_c_weights:
     
     def __init__(self, device):
