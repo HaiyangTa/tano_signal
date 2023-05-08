@@ -23,6 +23,15 @@ def getitem(spectra, PEV):
     PEV: string
         positional encoding vector. 
         
+        
+    return
+    ----------
+    Fcnm: ndarray
+         map of F-cnm
+    Rhi: array
+        map pf R-hi.
+    
+        
 """
     
 def calculate(cube, model, PEV):

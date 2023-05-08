@@ -13,6 +13,8 @@ import torch.nn.functional as F
 
 """ 
     PositionalEncoding: positional encoding method in original natural language processing.
+    This methdo will not be used! But leave it for further research.
+    
     
     Methods
     -------
@@ -47,21 +49,23 @@ class PositionalEncoding(nn.Module):
 
 
 """
-    spectra_cnn_transformer: A class of the CNN_transformer small model.
+    cnn_transformer: A class of the CNN_transformer small model.
     Used for 101 velocity channels data (data with 101 length).
     
     input Attributes
     ----------
-    num_features : int
-        The number of features.
-    drop_rate : the drop out rate in transformer.
-        input channel number.
-    pos_encoder : PositionalEncoding.
-        original positional encoder in NLP.
+    num_output: int
+        number of output
+    in_channels: int
+        number of input channels
+    input_row : int 
+        number of input row
+    input_column: int
+        number of input column
+    drop_out_rate : float
+        the drop out rate in last layer of CNN.
     lpe: boolean
-        whether or not add leanable positional embedding to inputs.
-    pos_embedding: nn.Parameter(.)
-        learnable parameters for positional embedding.
+        whether or not add leanable positional embedding to CNN inputs.
         
     Methods
     -------
@@ -220,17 +224,12 @@ class cnn_transformer(nn.Module):
     
     
 """
-    spectra_cnn: A class of the CNN model.
+    cnn: A class of the CNN model.
     for 101 velocity channels. 1D Data with 101 length.
     
     input Attributes
     ----------
-    drop_out_rate : float
-        the drop out rate in last layer of CNN.
-    lpe: boolean
-        whether or not add leanable positional embedding to CNN inputs.
-    num_layer : int
-        number of layers of CNN.
+    
     num_output: int
         number of output
     in_channels: int
@@ -239,6 +238,12 @@ class cnn_transformer(nn.Module):
         number of input row
     input_column: int
         number of input column
+    num_layer : int
+        number of layers of CNN will be 8. Users can not change this settings. 
+    drop_out_rate : float
+        the drop out rate in last layer of CNN.
+    lpe: boolean
+        whether or not add leanable positional embedding to CNN inputs.
     
     Methods
     -------

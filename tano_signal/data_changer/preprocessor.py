@@ -6,7 +6,7 @@
 import numpy as np
 
 """ 
-    proprocess: preprocess data using different PEV.
+    preprocess: preprocess data using different PEV.
     This loader load the data in the common way.
 
     Attributes
@@ -19,14 +19,11 @@ import numpy as np
     return 
     -------
     spectra: np array
-        spectra after processing.
+        the spectra with specific representation.
 """
 
 def preprocess(spectra, PEV):
-    #print('shape=', spectra.shape)
     num_column = len(spectra)
-    
-    
     if (PEV=='index_c'):
         position = np.linspace(0, 1.0, num_column).reshape(1, -1)
         spectra = np.vstack((spectra, position))

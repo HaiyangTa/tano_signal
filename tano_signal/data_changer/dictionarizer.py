@@ -7,11 +7,11 @@ Do not used for commercial purpose!
 import numpy as np
 
 """
-    dict_maker_gt: A class of dict_maker.
+    dict_maker: A class of dictionary maker.
     generate a dictionary for the datacube that conatins ground truth. 
     Used for 101 velocity channels data (data with 101 length).
     
-    input Attributes
+    initialization Attributes
     ----------
     cube: data cube
         spectra data cube.
@@ -22,8 +22,13 @@ import numpy as np
         
     Methods
     -------
-    make_dict:
+    make_dict_gt:
         generate a dictionary for the datacube that conatins ground truth. 
+        it can be used for training and prediction. 
+        
+    make_dict:
+        generate a dictionary for the datacube that does not onatins ground truth. 
+        it can be used for prediction only. 
     
 """
 

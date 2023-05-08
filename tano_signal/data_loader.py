@@ -2,7 +2,7 @@
 """
 Created on Sat Mar 18 21:42:38 2023
 
-@author: Administrator-1
+@author: Haiyang Tang
 """
 import numpy as np
 import torch
@@ -18,14 +18,12 @@ from torch.utils.data import Dataset
         training data 
     y : tensor
         lebels
-    transform : set
+    x_transform : set
         set of transformations for x.
-    target_transform : set
+    y_transform : set
         set of transformations for y.
-    mode: Str
+    PEV: Str
         Data representations.
-    num_column: int
-        number of columns for input data.
 
     Methods
     -------
@@ -91,14 +89,12 @@ class loader(Dataset):
     ----------
     xy : dictionary with form of [key: value]. value = (spectra, coordinates(x, y), ground truth) 
         training data 
-    transform : set
+    x_transform : set
         set of transformations for x.
-    target_transform : set
+    y_transform : set
         set of transformations for y.
-    mode: Str
+    PEV: Str
         Data representations.
-    num_column: int
-        number of columns for input data.
 
     Methods
     -------

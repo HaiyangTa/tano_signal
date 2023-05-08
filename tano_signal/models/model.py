@@ -68,7 +68,7 @@ def spectra_cnn_transformer(PEV, weights, num_output=2, drop_out_rate=0):
     
     Methods
     -------
-    get_checkpoint():
+    get_checkpoint_weights():
         return the checkpoint of the weights. 
     
 """
@@ -93,13 +93,17 @@ class learnable_PEV_ct_weights:
     input Attributes
     ----------
     num_output : int
-        The number of outputs.
+        The number of features.
     drop_out_rate: float 
         drop out rate in the last layer.
-    PEV: String
+    PEV: stinrg
         positional encoding vector.
-    drop_out_rate: float
-        drop out rate in the model.
+    weights:weights
+        weights for the model.
+    
+    return 
+    -----------
+    spectra_cnn model object
 
     
 """
@@ -139,7 +143,7 @@ def spectra_cnn(PEV, weights, num_output=2, drop_out_rate=0):
         
 
 """
-    learnable_PEV_ct_weights: A class of the CNN weights (learnable_PEV_ct_weights).
+    poly_concate_c_weights: A class of the CNN weights (poly_concate_c_weights).
     Used for 101 velocity channels data (data with 101 length).
     
     input Attributes
@@ -147,9 +151,10 @@ def spectra_cnn(PEV, weights, num_output=2, drop_out_rate=0):
     device : device
         GPU or CPU.
     
+    
     Methods
     -------
-    get_checkpoint():
+    get_checkpoint_weights():
         return the checkpoint of the weights. 
     
 """
@@ -178,7 +183,7 @@ class poly_concate_c_weights:
     
     Methods
     -------
-    get_checkpoint():
+    get_checkpoint_weights():
         return the checkpoint of the weights. 
     
 """
