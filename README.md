@@ -1,4 +1,4 @@
-# DeepSpectra
+# tano_signal
 The package used for HI spectra property extraction.
 
 
