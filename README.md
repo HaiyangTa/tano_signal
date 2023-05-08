@@ -13,7 +13,7 @@ The package used for HI spectra property extraction.
  spectra_cnn() | CNN     |  get CNN model |
  calculate() |  Rhi and Fcnm map  | calculate Fcnm and Rhi map |
  make_dict_gt() | dictionary with ground truth     |  get dictionary with ground truth. |
- make\_dict() | dictionary without ground truth    | get dictionary without ground truth.  |
+ make_dict() | dictionary without ground truth    | get dictionary without ground truth.  |
  preprocess() |   spectra with PEV | process 1D data by different PEV input string. |
 
 
@@ -45,6 +45,10 @@ Another part is the calculator part, which is used for making predictions on the
 
 
 
+
+Another important file is the dictionarizer.py. It has a class called dict_maker and this class contains two methods, make_dict() and make_dict_gt(). make_dict() will make a dictionary with no ground truth based on the data cube. make_dict_gt() will make a dictionary based on the data cube and R-hi and F-cnm ground truth. The structure of the dictionary is illustrated in Figure \ref{figure 72}.  The dictionary with ground truth can be used with training and prediction. A dictionary with no ground truth can only be used for prediction. We have already integrated the make_dict() method in calculate() method, users will not need to call make_dict() to get the prediction of the data cube. <br />
+
+![plot](./imgs/ts5.png)
 
 
 
