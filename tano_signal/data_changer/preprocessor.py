@@ -41,7 +41,6 @@ def preprocess(spectra, PEV):
         spectra =  np.vstack((spectra,position))
         spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
     elif (PEV=='poly_c'):
-        zero = np.linspace(0, 1.0, num_column).reshape(1, -1) 
         two =  spectra**2
         spectra = np.vstack((spectra,two))
         spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])

@@ -7,6 +7,8 @@ Created on Sat Mar 18 21:42:38 2023
 import numpy as np
 import torch
 from torch.utils.data import Dataset
+from  tano_signal.data_changer import dictionarizer, preprocessor
+
 
 """ 
     spectra_loader: A class to load the data.
@@ -49,36 +51,17 @@ class loader(Dataset):
         spectra = self.x[idx,:]
         label = self.y[idx,:]
             
-        if (self.mode=='index_c'):
-            position = np.linspace(0, 1.0, self.num_column).reshape(1, -1)
-            spectra = np.vstack((spectra, position))
-            spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
-        elif (self.mode=='index_a'):
-            position = np.linspace(0, 1.0, self.num_column).reshape(1, -1)
-            spectra = spectra + position
-            spectra = spectra.reshape(1,1,spectra.shape[1])
-        elif (self.mode=='sin_a'):
-            position = np.sin(np.linspace(0, 1.0, self.num_column).reshape(1, -1))
-            spectra = spectra + position
-            spectra = spectra.reshape(1,1,spectra.shape[1])
-        elif (self.mode=='sin_c'):
-            position = np.sin(np.linspace(0, 1.0, self.num_column).reshape(1, -1))
-            spectra =  np.vstack((spectra,position))
-            spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
-        elif (self.mode=='poly_c'):
-            zero = np.linspace(0, 1.0, self.num_column).reshape(1, -1) 
-            two =  spectra**2
-            spectra = np.vstack((spectra,two))
-            spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
-        else:
-            spectra = spectra.reshape(1,1,spectra.shape[0])
+        spectra = spectra = preprocessor.preprocess(spectra = spectra, PEV = self.mode)
+        spectra = np.array(spectra).astype(np.float32)
             
         if self.transform:
             spectra = self.transform(spectra)
-            
+        spectra = torch.from_numpy(spectra)
+        
         if self.target_transform:
             label = self.target_transform(label)
-            
+        label = torch.from_numpy(label)
+        
         return spectra, label
 
     
@@ -105,59 +88,40 @@ class loader(Dataset):
 
 # data loader 
 class cube_loader(Dataset):
-    def __init__(self, data_dict, x_transform=None, y_transform=None, PEV=None):
+    def __init__(self, cube, fcnm, rhi , x_transform=None, y_transform=None, PEV=None):
         
-        self.xy = data_dict
+        self.cube = cube
+        self.rhi = rhi
+        self.fcnm = fcnm
         self.transform = x_transform
         self.target_transform = y_transform
+        self.dm = dictionarizer.dict_maker(cube = self.cube ,Rhi=self.rhi, Fcnm=self.fcnm)
+        self.xy = self.dm.make_dict_gt()
         self.mode=PEV
         self.num_column = len(self.xy[0][0])
+        
+        
     def __len__(self):
         return len(self.xy)
     
     def __getitem__(self, idx):
         spectra = self.xy[idx][0]
         label = self.xy[idx][2]
+        spectra = preprocessor.preprocess(spectra = spectra, PEV = self.mode)
+        spectra = np.array(spectra).astype(np.float32)
         
-        if (self.mode=='index_c'):
-            position = np.linspace(0, 1.0, self.num_column).reshape(1, -1)
-            spectra = np.vstack((spectra, position))
-            spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
-        elif (self.mode=='index_a'):
-            position = np.linspace(0, 1.0, self.num_column).reshape(1, -1)
-            spectra = spectra + position
-            spectra = spectra.reshape(1,1,spectra.shape[1])
-        elif (self.mode=='sin_a'):
-            position = np.sin(np.linspace(0, 1.0, self.num_column).reshape(1, -1))
-            spectra = spectra + position
-            spectra = spectra.reshape(1,1,spectra.shape[1])
-        elif (self.mode=='sin_c'):
-            position = np.sin(np.linspace(0, 1.0, self.num_column).reshape(1, -1))
-            spectra =  np.vstack((spectra,position))
-            spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
-        elif (self.mode=='poly_c'):
-            two =  spectra**2
-            spectra = np.vstack((spectra,two))
-            spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
-        else:
-            spectra = spectra.reshape(1,1,spectra.shape[0])
-            
+        
         if self.transform:
-            spectra = np.array(spectra).astype(np.float32)
             spectra = self.transform(spectra)
-            
+        spectra = torch.from_numpy(spectra)
+        
         if self.target_transform:
-            label = np.array(label).astype(np.float32)
             label = self.target_transform(label)
             
         return spectra, label
     
 
     
-class ToTensor():
-    def __call__(self, sample):
-        x = torch.from_numpy(sample)
-        return x
     
 
     
