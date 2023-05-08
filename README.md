@@ -5,9 +5,11 @@ The package used for HI spectra property extraction.
 ![plot](./imgs/ts1.png)
 
 
+In order to simplify 1D signal processing, we developed a Python package called tano\_signal that integrates the important functionalities in the one-dimensional data processing. The package consists of three blocks, namely the model block, data\_changer block, and predictor block. Each block is a file that contains one or two .py files to realize certain functionalities. The package structure is illustrated in Figure \ref{figure 68}. <br />
+
 
 | Methods   | Return valu | Description   |
-| :---      |    :----:   |          ---: |
+| --------      |    --------   |  --------------- |
 
  spectra_cnn_transformer() | CNN-transformer | get CNN-transformer model|
  spectra_cnn() | CNN     |  get CNN model |
@@ -17,13 +19,6 @@ The package used for HI spectra property extraction.
  preprocess() |   spectra with PEV | process 1D data by different PEV input string. |
 
 
-
-
-
-
-
-
-In order to simplify 1D signal processing, we developed a Python package called tano\_signal that integrates the important functionalities in the one-dimensional data processing. The package consists of three blocks, namely the model block, data\_changer block, and predictor block. Each block is a file that contains one or two .py files to realize certain functionalities. The package structure is illustrated in Figure \ref{figure 68}. <br />
 
 
 
