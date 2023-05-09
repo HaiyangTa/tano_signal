@@ -45,11 +45,10 @@ def calculate(cube, model, PEV):
     
     Fcnm = np.zeros((num_row, num_column,1))
     Rhi = np.zeros((num_row,num_column,1))
+    print('progress=')
     for i in range(0, len(dictt)):
-        if(i%10000==0):
-            print((i/Summ)*100, '%')
+        print('{:.2%}'.format(i/Summ), end="\r")
         o = dictt.get(i)
-
         spectra = getitem(spectra = np.array(o[0]), PEV=PEV)
         spectra = spectra.reshape(1,spectra.shape[0], spectra.shape[1], -1).astype(np.float32)
         spectra = torch.from_numpy(spectra)

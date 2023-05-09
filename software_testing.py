@@ -1,12 +1,33 @@
 import unittest
 from tano_signal import *
-import copy
-import os
 from astropy.io  import fits
 import numpy as np
 import torch
+import matplotlib.pyplot as plt
 
 
+"""
+    data_changer_test: A class to test data changer.
+    
+    input Attributes
+    ----------
+    dictt : dictionray 
+        dictionray with not ground truth.
+    dictt_gt: dictionary 
+        dictionray with ground truth.
+    cube : array 
+        cubic data
+    fcnm: array
+        Fcnm ground truth 
+    rhi: array
+        Rhi ground truth 
+    
+    Methods
+    -------
+    (1-6): test the preprocess.py 
+    (7-9): test the dictionarizer.py
+    
+"""
 
 class data_changer_test(unittest.TestCase):
     
@@ -123,6 +144,28 @@ class data_changer_test(unittest.TestCase):
         dictt = self.dict_maker.make_dict_gt()
         assert (dictt==None)
         print('pass 9')
+        
+        
+        
+"""
+    data_loader_test: A class to test data loader.
+    
+    input Attributes
+    ----------
+    cube : array 
+        cubic data
+    fcnm: array
+        Fcnm ground truth 
+    rhi: array
+        Rhi ground truth 
+    bs: int
+        batch size
+    
+    Methods
+    -------
+    (1-6): test the shape of data loader for each representations. 
+    
+"""
         
         
 class data_loader_test(unittest.TestCase):
@@ -261,7 +304,30 @@ class data_loader_test(unittest.TestCase):
         assert (len(label[0]) == self.batchsize)
         print('pass 6')
         
-        
+
+"""
+    model_predictor_test: A class to test model, weights and predictor.
+    
+    input Attributes
+    ----------
+    cube : array 
+        cubic data
+    fcnm: array
+        Fcnm ground truth 
+    rhi: array
+        Rhi ground truth 
+
+
+    Methods
+    -------
+    calculate_test1(): calculate the R-hi and F-cnm map using CNN with polynomial feature concatenation as 
+                       representations and using pretrained poly_concate_c_weights. 
+                       
+    calculate_test2(): calculate the R-hi and F-cnm map using CNN-transformer with trainable PEV adding as 
+                       representations and using pretrained learnable_PEV_ct_weights.
+    
+"""
+
         
         
 class model_predictor_test(unittest.TestCase):
@@ -282,7 +348,7 @@ class model_predictor_test(unittest.TestCase):
                                                                          num_output=2, 
                                                                          drop_out_rate=0)
     
-    def plot_(im, title, label):
+    def plott_(self, im, title, label):
         plt.figure(figsize=(10,10))
         plt.imshow(im, cmap='cividis')
         cbar = plt.colorbar(shrink=0.5, pad=0.005)
@@ -298,17 +364,17 @@ class model_predictor_test(unittest.TestCase):
         # cnn
         print('test CNN')
         Fcnm, Rhi= calculate(self.cube, model = self.cnn, PEV= 'poly_c')
-        plot_(im =self.fcnm, title = 'ground truth Fcnm', label='Fcnm')
-        plot_(im = Fcnm, title = 'prediction Fcnm', label='Fcnm')
-        plot_(im =self.rhi, title = 'ground truth rhi', label='rhi')
-        plot_(im = Rhi, title = 'prediction rhi', label='rhi')
+        self.plott_(im =self.fcnm, title = 'ground truth Fcnm', label='Fcnm')
+        self.plott_(im = Fcnm, title = 'prediction Fcnm', label='Fcnm')
+        self.plott_(im =self.rhi, title = 'ground truth rhi', label='rhi')
+        self.plott_(im = Rhi, title = 'prediction rhi', label='rhi')
         
         
     def calculate_test2(self):
         # CNN-transformer 
         print('test CNN-transformer')
         Fcnm, Rhi= calculate(self.cube, model = self.cnn_transformer, PEV= 'trainable_a')
-        plot_(im =self.fcnm, title = 'ground truth Fcnm', label='Fcnm')
-        plot_(im = Fcnm, title = 'prediction Fcnm', label='Fcnm')
-        plot_(im =self.rhi, title = 'ground truth rhi', label='rhi')
-        plot_(im = Rhi, title = 'prediction rhi', label='rhi')
+        self.plott_(im =self.fcnm, title = 'ground truth Fcnm', label='Fcnm')
+        self.plott_(im = Fcnm, title = 'prediction Fcnm', label='Fcnm')
+        self.plott_(im =self.rhi, title = 'ground truth rhi', label='rhi')
+        self.plott_(im = Rhi, title = 'prediction rhi', label='rhi')
