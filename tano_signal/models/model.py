@@ -49,7 +49,7 @@ def spectra_cnn_transformer(PEV, weights, num_output=2, drop_out_rate=0):
                                              drop_out_rate=drop_out_rate, 
                                              lpe=lpe)
     
-    if(weights != None): 
+    if(type(weights) != type(None)): 
         modell.load_state_dict(weights.get_checkpoint_weights())
         print('sucessfully load the weights!')
     modell.eval()
@@ -135,7 +135,7 @@ def spectra_cnn(PEV, weights, num_output=2, drop_out_rate=0):
                                              drop_out_rate=drop_out_rate, 
                                              lpe=lpe)
         
-    if(weights != None):
+    if(type(weights) != type(None)):
         modell.load_state_dict(weights.get_checkpoint_weights())
         print('sucessfully load the weights!')
     modell.eval()
