@@ -1,3 +1,4 @@
+from __future__ import print_function, division
 import unittest
 from tano_signal import *
 from astropy.io  import fits
@@ -330,7 +331,7 @@ class data_loader_test(unittest.TestCase):
 
         
         
-class model_predictor_test(unittest.TestCase):
+class model_predictor_test():
     
     def __init__(self, cube, fcnm, rhi):
         self.cnn_weights = tano_signal.model.poly_concate_c_weights(device='cpu')

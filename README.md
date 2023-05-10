@@ -65,14 +65,13 @@ Another important file is the dictionarizer.py. It has a class called dict_maker
 
 
 Considering that further experiments may be needed on different data cubes, we also implement the
-data loader python file to help the training. our data loader has two classes, loader, and cube loader.
-The first class is used for loading discrete spectra (no special information) and the second class is used
+data loader python file to help the training. our data loader has two classes, loader, and cube_loader.
+The loader class is used for loading discrete spectra (no special information) and the cube_loader class is used
 for loading data cubes. Users can call one of the two methods to load the data. The initialization
 values for the loader and cube loader are shown in the following two figures.<br />
 
 ![plot](./imgs/ts6.png)
 ![plot](./imgs/ts7.png)
-
 
 
 

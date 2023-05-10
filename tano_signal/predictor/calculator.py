@@ -47,7 +47,8 @@ def calculate(cube, model, PEV):
     Rhi = np.zeros((num_row,num_column,1))
     print('progress=')
     for i in range(0, len(dictt)):
-        print('{:.2%}'.format(i/Summ), end="\r")
+        if(i%300==0):
+            print('{:.2%}'.format(i/Summ), end="\r")
         o = dictt.get(i)
         spectra = getitem(spectra = np.array(o[0]), PEV=PEV)
         spectra = spectra.reshape(1,spectra.shape[0], spectra.shape[1], -1).astype(np.float32)
@@ -58,4 +59,5 @@ def calculate(cube, model, PEV):
         prediction = model(spectra)
         Fcnm[position[0], position[1]] =prediction[0][0].cpu().detach().numpy()
         Rhi[position[0], position[1]] =prediction[0][1].cpu().detach().numpy()
+    print('done!')
     return Fcnm, Rhi

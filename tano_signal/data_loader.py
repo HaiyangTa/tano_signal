@@ -70,8 +70,12 @@ class loader(Dataset):
 
     Attributes
     ----------
-    xy : dictionary with form of [key: value]. value = (spectra, coordinates(x, y), ground truth) 
-        training data 
+    cube : cubic data
+        data cube
+    fcnm: array 
+        ground truth fcnm
+    rhi: array
+        ground truth rhi 
     x_transform : set
         set of transformations for x.
     y_transform : set
