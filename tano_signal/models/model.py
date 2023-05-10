@@ -26,7 +26,7 @@ import importlib
     
 """
 
-def spectra_cnn_transformer(PEV, weights, num_output=2, drop_out_rate=0):
+def spectra_cnn_transformer(PEV, weights=None, num_output=2, drop_out_rate=0):
     
     input_column = 101
     in_channels = 1
@@ -111,7 +111,7 @@ class learnable_PEV_ct_weights:
 
 
 
-def spectra_cnn(PEV, weights, num_output=2, drop_out_rate=0):
+def spectra_cnn(PEV, weights=None, num_output=2, drop_out_rate=0):
     
     input_column = 101
     in_channels = 1
