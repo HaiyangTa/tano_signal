@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 import codecs
 import os
 
-VERSION = '0.0.1'
+VERSION = '1.0.0'
 DESCRIPTION = 'A package for one dimensional data process'
 LONG_DESCRIPTION = 'Contains CNN-transformer, CNN model and data representations implementation.'
 
