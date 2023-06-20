@@ -12,7 +12,7 @@ def getitem(spectra, PEV):
 
 
 """
-    calculate: A method to predict the RHI and FCNM.
+    predict: A method to predict the RHI and FCNM.
     
     input Attributes
     ----------
@@ -34,7 +34,7 @@ def getitem(spectra, PEV):
         
 """
     
-def calculate(cube, model, PEV):
+def predict(cube, model, PEV):
     model.eval()
     num_row = cube.shape[1]
     num_column = cube.shape[2]

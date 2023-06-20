@@ -6,7 +6,7 @@ from tano_signal.data_changer.dictionarizer import dict_maker
 import tano_signal.data_loader
 from tano_signal.data_loader import loader, cube_loader
 
-from tano_signal.predictor.calculator import calculate
+from tano_signal.predictor.calculator import predict
 from tano_signal.data_changer.dictionarizer import dict_maker
 from tano_signal.data_changer.preprocessor import preprocess
 
